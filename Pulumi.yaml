@@ -1,4 +1,4 @@
-name: wmg-dockercloud
+name: docker-build-deploy
 description: A minimal Python Pulumi program
 runtime:
   name: python
