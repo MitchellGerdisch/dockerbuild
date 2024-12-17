@@ -41,5 +41,5 @@ ecr_image = docker_build.Image(
                     password=auth_token.password,
                 )
             ],
-            opts=pulumi.ResourceOptions(ignore_changes=["context"]),
+            # opts=pulumi.ResourceOptions(ignore_changes=["context"]),
         )
