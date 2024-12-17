@@ -14,22 +14,14 @@ import pulumi_aws as aws
 #         "description": "This image will get a descriptive label 👍",
 #     })
 
-base_name="mitch"
+base_name="refresh"
 
 ecr_repository = aws.ecr.Repository(
     f"{base_name}-ecr-repository",
-    # image_scanning_configuration=aws.ecr.RepositoryImageScanningConfigurationArgs(
-    #     scan_on_push=True
-    # ),
-    # image_tag_mutability="MUTABLE",
-    # tags={
-    #     "Environment": "dev",
-    # }
+    force_delete=True,
 )
 
 auth_token = aws.ecr.get_authorization_token_output(registry_id=ecr_repository.registry_id)
-
-
 
 ecr_image = docker_build.Image(
             f"{base_name}_db_export_lambda_image",
@@ -49,9 +41,5 @@ ecr_image = docker_build.Image(
                     password=auth_token.password,
                 )
             ],
-            # opts=pulumi.ResourceOptions(
-            #   ignore_changes=["contextHash"]
-            # )
-            #     aliases=[pulumi.Alias(parent=pulumi.ROOT_STACK_RESOURCE)], parent=self, ignore_changes=["contextHash"]
-            # ),
+            opts=pulumi.ResourceOptions(ignore_changes=["context"]),
         )
