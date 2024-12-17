@@ -34,7 +34,7 @@ auth_token = aws.ecr.get_authorization_token_output(registry_id=ecr_repository.r
 ecr_image = docker_build.Image(
             f"{base_name}_db_export_lambda_image",
             context={
-                "location": "./app",
+                "location": ".",
             },
             push=True,
             platforms=[
