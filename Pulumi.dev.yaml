@@ -1,6 +1,6 @@
 config:
-  # docker-build:host: tcp://127.0.0.1:2376/
-  docker-build:host: unix:///Users/mitch/.docker/run/docker.sock
+  docker-build:host: tcp://127.0.0.1:2376/
+  # docker-build:host: unix:///Users/mitch/.docker/run/docker.sock
   aws:region: us-east-2
 environment:
   - default/aws
