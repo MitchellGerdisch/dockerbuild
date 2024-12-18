@@ -1,2 +1,2 @@
 FROM alpine
-RUN echo 👍
+RUN echo hello
