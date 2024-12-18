@@ -23,7 +23,7 @@ jobs:
       - uses: pulumi/actions@v3
         with:
           command: update
-          stack-name: ${{env.BRANCHNAME}}
+          stack-name: team-ce/docker-build-deploy/dev
           upsert: true
         env:
           PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
