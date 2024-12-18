@@ -4,10 +4,10 @@ on:
   workflow_dispatch:
     branches:
       - main
-  push:
-    branches:
-      - dev
-      - main
+  # push:
+  #   branches:
+  #     - dev
+  #     - main
 
 env:
   BRANCHNAME: ${{ github.REF_NAME }}
