@@ -1,0 +1,34 @@
+name: Update on Push
+
+on:
+  workflow_dispatch:
+    branches:
+      - main
+  push:
+    branches:
+      - dev
+      - main
+
+env:
+  BRANCHNAME: ${{ github.REF_NAME }}
+
+jobs:
+  up:
+    name: Update
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: |
+          echo "GITHUB_REF_NAME: ${{env.BRANCHNAME}}"
+          npm install
+      - uses: pulumi/actions@v3
+        with:
+          command: update
+          stack-name: ${{env.BRANCHNAME}}
+          upsert: true
+        env:
+          PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
+          ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
+          ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
+          ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
+          ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
